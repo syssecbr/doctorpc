@@ -1,4 +1,4 @@
-# Odontologia Jurunas & Management with Create React App 💯
+# Doctor PC - Manutenção e Reparo de Servidores & Computadores 💯
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
