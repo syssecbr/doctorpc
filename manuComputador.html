@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor PC | Manutenção e Reparo de Servidores & Computadores</title>
+    
+    <!-- Bloco de Estilos CSS Puro -->
+    <style>
+        /* Variáveis de Cores */
+        :root {
+            --color-primary: #1D4ED8; /* Azul principal */
+            --color-secondary: #FBBF24; /* Amarelo de destaque */
+            --color-dark: #0F172A; /* Fundo escuro */
+            --color-light: #F9FAFB; /* Fundo claro */
+        }
+
+        /* Reset e Base */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; /* Usando Inter como no original */
+            background-color: var(--color-light);
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+        
+        /* Containers e Layout Geral */
+        .container {
+            max-width: 1280px; /* Max-w-7xl */
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Componentes Comuns */
+        .rounded-xl { border-radius: 0.75rem; }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .shadow-2xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .uppercase { text-transform: uppercase; }
+        .text-center { text-align: center; }
+
+        /* Botões */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid transparent;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--color-secondary);
+            color: var(--color-dark);
+        }
+        .btn-primary:hover {
+            background-color: #eab308; /* Amarelo mais escuro */
+        }
+
+        .btn-secondary {
+            border-color: var(--color-primary);
+            color: white;
+            background-color: transparent;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(29, 78, 216, 0.2);
+        }
+
+        /* 1. Header (Navegação) */
+        .header {
+            background-color: var(--color-dark);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+        }
+
+        .logo a {
+            font-size: 1.875rem; /* 3xl */
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--color-secondary);
+        }
+
+        .nav-menu a {
+            color: #D1D5DB; /* gray-300 */
+            text-decoration: none;
+            transition: color 0.2s;
+            margin-left: 2rem;
+        }
+        .nav-menu a:hover {
+            color: white;
+        }
+
+        /* Menu Mobile */
+        .mobile-menu-button {
+            display: block;
+            background: none;
+            border: none;
+            color: #9CA3AF; /* gray-400 */
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+        }
+
+        .mobile-menu {
+            background-color: rgba(15, 23, 42, 0.95); /* background-dark/95 */
+            padding: 0.5rem 0;
+            display: none; /* Controlado pelo JS */
+        }
+        .mobile-menu a {
+            display: block;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #D1D5DB;
+            text-decoration: none;
+            border-radius: 0.375rem;
+            transition: background-color 0.2s;
+        }
+        .mobile-menu a:hover {
+            background-color: var(--color-primary);
+            color: white;
+        }
+        .mobile-menu a:first-child {
+            color: white; /* Cor do link ativo/inicial */
+        }
+        
+        /* 2. WhatsApp Flutuante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: #22C55E; /* green-500 */
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 50;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(34, 197, 94, 0.5), 0 4px 6px -2px rgba(34, 197, 94, 0.25);
+        }
+        .whatsapp-float svg {
+            width: 2rem;
+            height: 2rem;
+            fill: currentColor;
+        }
+
+        /* 3. Hero Section */
+        .hero-section {
+            background-color: var(--color-dark);
+            color: white;
+            padding-top: 4rem;
+            padding-bottom: 6rem;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 2.25rem; /* 4xl */
+            font-weight: 800;
+            letter-spacing: -0.025em; /* tracking-tight */
+            margin-bottom: 1rem;
+        }
+        .hero-title span {
+            color: var(--color-primary);
+        }
+
+        .hero-subtitle {
+            margin-top: 0.75rem;
+            max-width: 42rem;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.25rem; /* xl */
+            color: #D1D5DB; /* gray-300 */
+        }
+
+        .hero-actions {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* 4. Services Section */
+        .services-section {
+            padding-top: 4rem;
+            padding-bottom: 6rem;
+            background-color: white;
+        }
+        
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-tag {
+            font-size: 1rem;
+            color: var(--color-primary);
+            font-weight: 600;
+            letter-spacing: 0.05em; /* tracking-wide */
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 2rem; /* 3xl */
+            font-weight: 800;
+            color: #111827; /* gray-900 */
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            padding-top: 1.5rem;
+        }
+        
+        .service-content {
+            background-color: #F3F4F6; /* gray-100 */
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            padding-bottom: 2rem;
+            height: 100%;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+            position: relative;
+        }
+        .service-content:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-icon-wrapper {
+            position: absolute;
+            top: -1.5rem;
+            left: 1.5rem;
+        }
+
+        .service-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            background-color: var(--color-primary);
+            border-radius: 9999px; /* full rounded */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            margin-top: 3rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #111827;
+        }
+        .service-card p {
+            margin-top: 1.25rem;
+            font-size: 1rem;
+            color: #6B7280; /* gray-500 */
+        }
+
+        /* 5. About Section */
+        .about-section {
+            padding-top: 4rem;
+            padding-bottom: 6rem;
+            background-color: var(--color-dark);
+            color: white;
+        }
+
+        .about-header .section-tag {
+            color: var(--color-secondary);
+        }
+        .about-header .section-title {
+            color: white;
+        }
+
+        .about-content {
+            margin-top: 2.5rem;
+        }
+
+        .about-item {
+            margin-top: 2.5rem;
+        }
+        .about-item h3 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .about-item p {
+            font-size: 1rem;
+            color: #D1D5DB; /* gray-300 */
+        }
+
+        /* 6. Contact Section */
+        .contact-section {
+            padding-top: 4rem;
+            padding-bottom: 6rem;
+            background-color: var(--color-light);
+        }
+
+        .contact-card-wrapper {
+            margin-top: 3rem;
+            max-width: 32rem;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .contact-card-wrapper p.description {
+            text-align: center;
+            font-size: 1.125rem;
+            color: #4B5563; /* gray-600 */
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-actions .btn {
+            width: 100%;
+            background-color: #10B981; /* green-500 */
+            color: white;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+        }
+        .contact-actions .btn:hover {
+            background-color: #059669; /* green-600 */
+        }
+
+        .contact-actions .btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.75rem;
+        }
+
+        .phone-number {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .phone-number p {
+            font-size: 0.875rem;
+            color: #6B7280;
+            margin-bottom: 0.25rem;
+        }
+        .phone-number a {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+        .phone-number a:hover {
+            color: #2563EB; /* blue-700 */
+        }
+
+        /* 7. Footer */
+        .footer {
+            background-color: var(--color-dark);
+            padding: 3rem 0;
+            text-align: center;
+            color: #9CA3AF; /* gray-400 */
+        }
+        .footer p {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        /* Media Queries (Responsividade) */
+        @media (min-width: 640px) { /* sm breakpoint */
+            .hero-title { font-size: 3rem; } /* 5xl */
+            .hero-section { padding-top: 6rem; padding-bottom: 8rem; }
+            .section-title { font-size: 2.5rem; } /* 4xl */
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-item { margin-top: 0; }
+        }
+
+        @media (min-width: 768px) { /* md breakpoint */
+            .mobile-menu-button { display: none; }
+            .nav-menu { display: flex !important; }
+            .services-grid { grid-template-columns: repeat(3, 1fr); }
+            .about-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        }
+
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .hero-title { font-size: 4.5rem; } /* 7xl */
+            .hero-subtitle { font-size: 1.5rem; } /* 2xl */
+            .services-grid { margin-top: 4rem; }
+            .whatsapp-float { bottom: 2rem; right: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ícone Fixo do WhatsApp -->
+    <a href="https://wa.me/5519997808689?text=Ol%C3%A1%2C+preciso+de+um+or%C3%A7amento+para+manuten%C3%A7%C3%A3o+de+computador." target="_blank"
+       class="whatsapp-float">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M380.9 97.1C339.4 55.4 283.8 32 223.5 32c-122.9 0-222 99.1-222 222c0 39.5 10.5 78.4 30.6 112.5L32 480l113.8-30.8c34.3 18.9 73.8 28.7 117.7 28.7c122.9 0 222-99.1 222-222c0-59.8-23.4-116.7-65.1-158.4zm-147.2 278.5l-2.4-1.4c-2.4-1.4-14.2-7.8-16.4-8.5c-2.2-.7-3.8-1.1-5.3 1.1c-1.5 2.2-6.1 7.4-6.8 8.8c-.7 1.4-1.5 1.5-3.8.7c-2.2-.7-9.4-3.4-17.9-10.9c-6.6-5.9-11-13.3-12.4-15.5c-1.4-2.2-.1-2.9 1.1-4.1c1.1-1.1 2.2-2.7 3.3-4.1c1.1-1.4 1.5-2.2 2.2-3.8c.7-1.5.4-2.7-.2-4.1c-1.2-2.4-3.8-6-5.3-8.8c-1.5-2.7-3-2.2-5.3-2.2c-2.2 0-4.8 0-7.4 0c-2.7 0-7.4.7-11.2 3.7c-3.7 3-14.2 13.8-14.2 33.6s14.5 38.9 16.5 41.5c2 2.7 28.6 44.5 69.4 61.2c16.5 6.7 29.5 10.6 39.7 10.6c13.7 0 26.9-4.4 36.9-11.9c12.3-9.1 16-15.5 18.2-19c2.2-3.4 2.2-6.5 1.5-7.7c-.7-1.4-2.7-2.2-5.3-3.4z"/>
+        </svg>
+    </a>
+
+    <!-- Seção de Navegação (Header) -->
+    <header class="header">
+        <div class="container navbar">
+            <!-- Logo/Nome da Empresa -->
+            <div class="logo">
+                <a href="#">Doctor<span>PC</span></a>
+            </div>
+            <!-- Menu Principal (Desktop - Visível apenas em telas maiores) -->
+            <nav class="nav-menu" style="display: none;">
+                <a href="#inicio">Início</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#sobre">Sobre Nós</a>
+                <a href="#contato">Contato</a>
+            </nav>
+            <!-- Botão Menu Mobile (Hamburger) -->
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Menu Mobile (oculto por padrão) -->
+        <div id="mobile-menu" class="mobile-menu">
+            <div class="px-4 py-2">
+                <a href="#inicio">Início</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#sobre">Sobre Nós</a>
+                <a href="#contato">Contato</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção de Destaque (Hero) -->
+        <section id="inicio" class="hero-section">
+            <div class="container">
+                <h1 class="hero-title">
+                    Seu <span>Computador</span> Novo, Sem Sair de Casa.
+                </h1>
+                <p class="hero-subtitle">
+                    Reparos, upgrades e manutenção preventiva para PCs e Notebooks. Atendimento rápido e confiável.
+                </p>
+                <div class="hero-actions">
+                    <a href="#servicos" class="btn btn-primary">
+                        Ver Nossos Serviços
+                    </a>
+                    <a href="https://wa.me/5519997808689?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento." target="_blank" class="btn btn-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 1.25rem; height: 1.25rem; margin-right: 0.5rem; fill: #86EFAC;">
+                            <path d="M380.9 97.1C339.4 55.4 283.8 32 223.5 32c-122.9 0-222 99.1-222 222c0 39.5 10.5 78.4 30.6 112.5L32 480l113.8-30.8c34.3 18.9 73.8 28.7 117.7 28.7c122.9 0 222-99.1 222-222c0-59.8-23.4-116.7-65.1-158.4zm-147.2 278.5l-2.4-1.4c-2.4-1.4-14.2-7.8-16.4-8.5c-2.2-.7-3.8-1.1-5.3 1.1c-1.5 2.2-6.1 7.4-6.8 8.8c-.7 1.4-1.5 1.5-3.8.7c-2.2-.7-9.4-3.4-17.9-10.9c-6.6-5.9-11-13.3-12.4-15.5c-1.4-2.2-.1-2.9 1.1-4.1c1.1-1.1 2.2-2.7 3.3-4.1c1.1-1.4 1.5-2.2 2.2-3.8c.7-1.5.4-2.7-.2-4.1c-1.2-2.4-3.8-6-5.3-8.8c-1.5-2.7-3-2.2-5.3-2.2c-2.2 0-4.8 0-7.4 0c-2.7 0-7.4.7-11.2 3.7c-3.7 3-14.2 13.8-14.2 33.6s14.5 38.9 16.5 41.5c2 2.7 28.6 44.5 69.4 61.2c16.5 6.7 29.5 10.6 39.7 10.6c13.7 0 26.9-4.4 36.9-11.9c12.3-9.1 16-15.5 18.2-19c2.2-3.4 2.2-6.5 1.5-7.7c-.7-1.4-2.7-2.2-5.3-3.4z"/>
+                        </svg>
+                        Orçamento Rápido
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Serviços -->
+        <section id="servicos" class="services-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-tag uppercase">O que fazemos</h2>
+                    <p class="section-title">
+                        Soluções Completas para Seus Dispositivos
+                    </p>
+                </div>
+
+                <div class="services-grid">
+                    <!-- Cartão de Serviço 1 -->
+                    <div class="service-card">
+                        <div class="service-content shadow-lg">
+                            <div class="service-icon-wrapper">
+                                <span class="service-icon">
+                                    <!-- Ícone de Reparo (Chave) -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 011-1h1a2 2 0 100-4H7a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011 1v1z" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <h3>Formatação e Otimização</h3>
+                            <p>
+                                Instalação limpa do Sistema Operacional (Windows, Mac, Linux), remoção de vírus/malwares e otimização para máxima velocidade.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Cartão de Serviço 2 -->
+                    <div class="service-card">
+                        <div class="service-content shadow-lg">
+                            <div class="service-icon-wrapper">
+                                <span class="service-icon">
+                                    <!-- Ícone de Upgrade (Seta para cima) -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <h3>Upgrades de Hardware</h3>
+                            <p>
+                                Aumento de RAM, troca de HD para SSD e instalação de placas de vídeo. Melhor desempenho para jogos e trabalho.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Cartão de Serviço 3 -->
+                    <div class="service-card">
+                        <div class="service-content shadow-lg">
+                            <div class="service-icon-wrapper">
+                                <span class="service-icon">
+                                    <!-- Ícone de Notebook (Laptop) -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L12 20m0 0l2.25-3M12 20v-7h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <h3>Reparo de Notebooks</h3>
+                            <p>
+                                Troca de telas, reparo em dobradiças, conserto de placas-mãe e solução de problemas de superaquecimento.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Sobre Nós -->
+        <section id="sobre" class="about-section">
+            <div class="container">
+                <div class="about-header text-center">
+                    <h2 class="section-tag uppercase">Nossa Missão</h2>
+                    <p class="section-title">
+                        Por Que Escolher a Doctor PC?
+                    </p>
+                </div>
+                <div class="about-content">
+                    <div class="about-item">
+                        <h3>Atendimento Personalizado</h3>
+                        <p>
+                            Não somos apenas técnicos; somos consultores. Analisamos suas necessidades e oferecemos a solução mais custo-benefício, sem empurrar serviços desnecessários.
+                        </p>
+                    </div>
+                    <div class="about-item">
+                        <h3>Transparência Total</h3>
+                        <p>
+                            Você acompanha cada etapa do processo. Orçamentos claros e sem surpresas. A honestidade é o núcleo do nosso serviço.
+                        </p>
+                    </div>
+                    <div class="about-item">
+                        <h3>Rapidez e Garantia</h3>
+                        <p>
+                            Sabemos que tempo é dinheiro. Trabalhamos com agilidade e oferecemos garantia de 90 dias em todos os serviços de hardware e software.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Contato -->
+        <section id="contato" class="contact-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-tag uppercase">Fale Conosco</h2>
+                    <p class="section-title">
+                        Comece seu Reparo Hoje
+                    </p>
+                </div>
+
+                <div class="contact-card-wrapper shadow-2xl">
+                    <p class="description">
+                        A maneira mais rápida é pelo WhatsApp, mas você também pode nos ligar!
+                    </p>
+                    <div class="contact-actions">
+                        <!-- Botão de WhatsApp Grande -->
+                        <a href="https://wa.me/5519997808689?text=Ol%C3%A1%2C+preciso+de+ajuda+com+meu+computador." target="_blank" class="btn shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="fill: white;">
+                                <path d="M380.9 97.1C339.4 55.4 283.8 32 223.5 32c-122.9 0-222 99.1-222 222c0 39.5 10.5 78.4 30.6 112.5L32 480l113.8-30.8c34.3 18.9 73.8 28.7 117.7 28.7c122.9 0 222-99.1 222-222c0-59.8-23.4-116.7-65.1-158.4zm-147.2 278.5l-2.4-1.4c-2.4-1.4-14.2-7.8-16.4-8.5c-2.2-.7-3.8-1.1-5.3 1.1c-1.5 2.2-6.1 7.4-6.8 8.8c-.7 1.4-1.5 1.5-3.8.7c-2.2-.7-9.4-3.4-17.9-10.9c-6.6-5.9-11-13.3-12.4-15.5c-1.4-2.2-.1-2.9 1.1-4.1c1.1-1.1 2.2-2.7 3.3-4.1c1.1-1.4 1.5-2.2 2.2-3.8c.7-1.5.4-2.7-.2-4.1c-1.2-2.4-3.8-6-5.3-8.8c-1.5-2.7-3-2.2-5.3-2.2c-2.2 0-4.8 0-7.4 0c-2.7 0-7.4.7-11.2 3.7c-3.7 3-14.2 13.8-14.2 33.6s14.5 38.9 16.5 41.5c2 2.7 28.6 44.5 69.4 61.2c16.5 6.7 29.5 10.6 39.7 10.6c13.7 0 26.9-4.4 36.9-11.9c12.3-9.1 16-15.5 18.2-19c2.2-3.4 2.2-6.5 1.5-7.7c-.7-1.4-2.7-2.2-5.3-3.4z"/>
+                            </svg>
+                            Chamar no WhatsApp
+                        </a>
+
+                        <!-- Telefone -->
+                        <div class="phone-number">
+                            <p>Ou ligue para:</p>
+                            <a href="tel:+5519997808689">(19) 99780-8689</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Doctor PC. Todos os direitos reservados.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.875rem;">Manutenção de Computadores com Qualidade e Confiança.</p>
+        </div>
+    </footer>
+
+    <!-- Bloco de Código JavaScript Puro -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // Toggle do menu mobile
+            mobileMenuButton.addEventListener('click', () => {
+                // Alterna a visibilidade do menu
+                mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            // Fecha o menu ao clicar em um link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Oculta o menu
+                    mobileMenu.style.display = 'none';
+                });
+            });
+
+            // Lógica para mostrar o menu desktop em telas maiores (simulação do Tailwind md:flex)
+            function checkScreenSize() {
+                const navMenu = document.querySelector('.nav-menu');
+                if (window.innerWidth >= 768) {
+                    navMenu.style.display = 'flex';
+                } else {
+                    navMenu.style.display = 'none';
+                }
+            }
+
+            // Garante que o menu desktop é exibido corretamente ao carregar e redimensionar
+            checkScreenSize();
+            window.addEventListener('resize', checkScreenSize);
+        });
+    </script>
+</body>
+</html>
+
