@@ -348,6 +348,7 @@ nav.main-nav a:focus {
 /* Contact card */
 .contact-card {
   background: white;
+  /* color:black; */
   padding: 1.25rem;
   border-radius: 12px;
   box-shadow: var(--shadow-lg);
@@ -362,6 +363,11 @@ nav.main-nav a:focus {
   text-decoration: none;
   font-weight: 800;
 }
+/* .contact-card a:hover {
+  background: rgba(212, 15, 15, 0.03);
+} */
+
+
 .wa-btn {
   background: var(--whatsapp-green);
   color: white;
