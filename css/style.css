@@ -549,6 +549,12 @@ button:focus {
   .grid.two {
     grid-template-columns: repeat(2, 1fr);
   }
+  .grid.tres {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, auto);
+  gap: 1rem;
+}
   .mobile-panel {
     display: none !important;
   }
