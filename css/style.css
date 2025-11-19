@@ -47,7 +47,7 @@ body {
 .container {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
 }
 
 /* Skip link (acessibilidade) */
@@ -89,7 +89,7 @@ header.header {
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  /* gap: 0.7rem; */
   text-decoration: none;
   color: white;
 }
@@ -97,18 +97,17 @@ header.header {
   width: 44px;
   height: 44px;
   border-radius: 8px;
-  /* background: linear-gradient(135deg, var(--pumpkin), #ff8a3d); */
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
   color: white;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   box-shadow: var(--shadow-sm);
 }
 /* ===== LOGO ===== */
 .logo img {
-  height: 50px;
+  height: 47px;
   width: auto;
   display: block;
 }
@@ -230,7 +229,7 @@ nav.main-nav a:focus {
 .hero {
   background: linear-gradient(180deg, #0b0b0b 0%, rgba(11, 11, 11, 0.92) 60%);
   color: white;
-  padding: 3.5rem 0 3.75rem;
+  padding: 1.5rem 0 3.75rem;
 }
 .hero-inner {
   display: flex;
@@ -552,12 +551,9 @@ button:focus {
      * -> Se elas já aparecem por padrão, este bloco é opcional/desnecessário. */
   .brand-sub {
     /* Retorna o elemento para seu comportamento padrão (inline) */
-    /* display: inline; */
     display: block;
-    font-weight: 100;
     font-size: 0.8rem;
     color: var(--muted);
-    margin-top: 2px;
   }
 
   /* 2. As linhas de texto principal (.brand-text) devem ficar lado a lado.
@@ -595,5 +591,14 @@ button:focus {
       /* Adiciona 15 pixels de espaço vertical depois do elemento */
       margin-bottom: 90px;
     }
+  }
+
+  .container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  .hero {
+    padding: 3.5rem 0 3.75rem;
   }
 }
