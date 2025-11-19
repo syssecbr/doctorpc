@@ -31,10 +31,10 @@
 }
 html,
 body {
-    height: 100%;
-    /* Adicione estas linhas para garantir que a rolagem funcione no body */
-    overflow-x: hidden;
-    overflow-y: auto;
+  height: 100%;
+  /* Adicione estas linhas para garantir que a rolagem funcione no body */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 body {
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto,
@@ -44,13 +44,16 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* 🥇 CORREÇÃO DE BUG DA ÂNCORA (#) 🥇 */
+  /* Adiciona um espaço de 68px (altura do header) no topo da rolagem. */
+  /* Isso garante que a seção de destino (ex: #servicos) pare abaixo do header fixo. */
+  scroll-padding-top: 68px;
 }
 
 /* Container */
 .container {
   max-width: var(--max-w);
   margin: 0 auto;
-  /* padding: 0 1rem; */
 }
 
 /* Skip link (acessibilidade) */
@@ -78,7 +81,6 @@ body {
 header.header {
   position: sticky;
   top: 0;
-  /* z-index: 60; */
   z-index: 999;
   width: 100%; /* Garante que ele ocupe toda a largura */
   background: linear-gradient(180deg, #0b0b0b, #0b0b0b);
@@ -108,7 +110,6 @@ header.header {
   justify-content: center;
   font-weight: 800;
   color: white;
-  /* font-size: 1rem; */
   box-shadow: var(--shadow-sm);
 }
 /* ===== LOGO ===== */
@@ -188,8 +189,6 @@ nav.main-nav a:focus {
   transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 .btn-primary-whatsapp:hover {
-  /* background: #005fcc; */
-  /* transform: translateY(-3px); */
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
   color: green;
 }
@@ -236,11 +235,6 @@ nav.main-nav a:focus {
   background: linear-gradient(180deg, #0b0b0b 0%, rgba(11, 11, 11, 0.92) 60%);
   color: white;
   padding: 1.5rem 0 3.75rem;
-  /* padding-top: calc(68px + 4.5rem); */
-  /* -------- */
-  /* padding-top: calc(3.5rem + 68px); */
-  /* padding-bottom: 3.75rem; */
-
 }
 .hero-inner {
   display: flex;
@@ -556,23 +550,13 @@ button:focus {
     display: none;
   }
 
-  /* ✨ NOVO CSS INVERTIDO APLICADO ✨ */
-
-  /* 1. As linhas de subtítulo (.brand-sub) devem aparecer.
-     * -> Se você as ocultou no CSS padrão, precisa forçar a exibição aqui.
-     * -> Se elas já aparecem por padrão, este bloco é opcional/desnecessário. */
   .brand-sub {
-    /* Retorna o elemento para seu comportamento padrão (inline) */
     display: block;
     font-size: 0.8rem;
     color: var(--muted);
   }
 
-  /* 2. As linhas de texto principal (.brand-text) devem ficar lado a lado.
-     * -> Retornamos ao comportamento padrão do span, que é 'inline'. */
   .brand-text {
-    /* Garante que o span se comporte como um elemento de linha (lado a lado) */
-    /* display: inline; */
     font-weight: 800;
     font-size: 0.9rem;
     line-height: 1;
@@ -580,27 +564,15 @@ button:focus {
 
   /* Cabecalho da tela principal */
   .hero-content {
-    /* Centraliza todo o texto (incluindo <h1> e <p>) dentro do container */
     text-align: center;
-    /* Opcional: Garante que o container use a largura total disponível */
     width: 100%;
-
-    /* Aninhamento válido em SCSS */
     strong {
-      /* Torna o elemento capaz de aceitar margem vertical e ocupa toda a largura */
       display: block;
-
-      /* Adiciona 15 pixels de espaço vertical antes do elemento */
       margin-top: 90px;
-
-      /* Adiciona 15 pixels de espaço vertical depois do elemento */
       margin-bottom: 90px;
     }
     p {
-      /* Torna o elemento capaz de aceitar margem vertical e ocupa toda a largura */
       display: block;
-
-      /* Adiciona 15 pixels de espaço vertical depois do elemento */
       margin-bottom: 90px;
     }
   }
@@ -610,5 +582,4 @@ button:focus {
     margin: 0 auto;
     padding: 0 1rem;
   }
-
 }
