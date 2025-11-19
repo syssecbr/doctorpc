@@ -1,0 +1,599 @@
+/* <style> */
+:root {
+  --pumpkin: #f97316; /* abóbora */
+  --black: #000000;
+  --red: #dc2626;
+  --bg: #ffffff;
+  --muted: #6b7280;
+  --card: #f3f4f6;
+  --max-w: 1100px;
+  --radius: 12px;
+  --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+  --focus: 3px solid rgba(249, 115, 22, 0.18);
+
+  /* Variáveis para fácil manutenção das cores */
+  /* Floating WhatsApp (subtle) */
+  --whatsapp-green: #25d366;
+  --whatsapp-green-hover: #128c7e; /* Opção alternativa de hover */
+  --icon-color: #ffffff;
+  --text-color: #ffffff;
+  --border-radius: 25px; /* Manter aqui para o botão principal */
+  --icon-size: 22px; /* Tamanho base do SVG */
+  --icon-padding: 12px; /* Padding ao redor do SVG */
+}
+
+/* Reset simples */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial;
+  background: var(--bg);
+  color: var(--black);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Skip link (acessibilidade) */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  background: var(--black);
+  color: white;
+  border-radius: 6px;
+  z-index: 9999;
+}
+
+/* Header */
+header.header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: linear-gradient(180deg, #0b0b0b, #0b0b0b);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: var(--shadow-sm);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: white;
+}
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  /* background: linear-gradient(135deg, var(--pumpkin), #ff8a3d); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: white;
+  font-size: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+/* ===== LOGO ===== */
+.logo img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+/* Desktop menu */
+nav.main-nav {
+  display: none;
+  gap: 1.25rem;
+  align-items: center;
+}
+nav.main-nav a {
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+nav.main-nav a:hover,
+nav.main-nav a:focus {
+  background: rgba(255, 255, 255, 0.03);
+  outline: none;
+}
+
+/* CTA buttons in header */
+.header-ctas {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.btn-primary {
+  background: var(--pumpkin);
+  color: white;
+  border-color: transparent;
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:focus {
+  outline: none;
+  box-shadow: var(--focus);
+}
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  font-size: 0.95rem;
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+}
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+.btn-primary-whatsapp {
+  background: linear-gradient(180deg, #25d366 0%, #1ebe5d 100%);
+  color: white;
+  padding: 7px;
+  border-radius: 9px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.btn-primary-whatsapp:hover {
+  /* background: #005fcc; */
+  /* transform: translateY(-3px); */
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  color: green;
+}
+
+/* Mobile hamburger */
+.hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: #d1d5db;
+  cursor: pointer;
+}
+.hamburger:focus {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+/* Mobile menu panel */
+.mobile-panel {
+  display: none;
+  background: linear-gradient(180deg, #070707, #0d0d0d);
+  padding: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+.mobile-panel a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #e5e7eb;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.mobile-panel a:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(180deg, #0b0b0b 0%, rgba(11, 11, 11, 0.92) 60%);
+  color: white;
+  padding: 3.5rem 0 3.75rem;
+}
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+.hero h1 {
+  font-size: 1.5rem;
+  line-height: 1.05;
+  font-weight: 900;
+  max-width: 720px;
+}
+.hero h1 strong {
+  color: var(--pumpkin);
+}
+.hero p {
+  color: #d1d5db;
+  font-size: 1.05rem;
+  max-width: 780px;
+}
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.hero-cta {
+  background: var(--pumpkin);
+  color: white;
+  padding: 0.85rem 1.15rem;
+  border-radius: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: var(--shadow-lg);
+}
+.hero-cta.secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Services */
+.section {
+  padding: 3rem 0;
+}
+.section .center {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+.services-grid {
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+.card h3 {
+  font-size: 1.05rem;
+  margin-top: 0.75rem;
+}
+.card p {
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+/* About / trust */
+.trust {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.trust .item {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+}
+.badges {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Testimonials */
+.testimonials {
+  display: grid;
+  gap: 1rem;
+}
+.testimonial {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+}
+.stars {
+  color: var(--pumpkin);
+  font-weight: 800;
+}
+
+/* Contact card */
+.contact-card {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+.contact-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 800;
+}
+.wa-btn {
+  background: var(--whatsapp-green);
+  color: white;
+}
+.tel {
+  color: var(--black);
+  font-weight: 800;
+}
+
+/* Footer */
+footer.footer {
+  padding: 2rem 0;
+  background: #070707;
+  color: #cbd5e1;
+  text-align: center;
+}
+
+/* Floating WhatsApp (subtle / smooth) */
+/* Container do Link: Responsável pela posição e comportamento geral */
+.wp-chat-link {
+  text-decoration: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  cursor: pointer;
+  display: block;
+}
+
+/* Estilização do Botão Flutuante (o div) */
+.wp-chat {
+  display: flex;
+  align-items: center;
+
+  background-color: var(--whatsapp-green);
+  border-radius: var(--border-radius);
+
+  /* Remove o padding horizontal daqui, ele será controlado pelo ícone */
+  padding: 0;
+
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  overflow: hidden;
+  width: auto;
+}
+
+/* Efeito Hover: Expansão, cor e leve levantamento */
+.wp-chat-link:hover .wp-chat {
+  background-color: var(--whatsapp-green-hover);
+  transform: translateY(-2px);
+}
+
+/* Estilização do Ícone: AGORA PERFEITAMENTE CIRCULAR */
+.wp-chat-icon {
+  /* Garante que o fundo seja circular */
+  background-color: var(--whatsapp-green);
+  border-radius: 50%; /* Faz um círculo perfeito */
+
+  /* Garante que o círculo tenha a mesma largura e altura */
+  width: calc(var(--icon-size) + (var(--icon-padding) * 2));
+  height: calc(var(--icon-size) + (var(--icon-padding) * 2));
+
+  /* Centraliza o SVG dentro do círculo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* No estado inicial, não tem margem à direita */
+  margin-right: 0;
+
+  transition: background-color 0.3s ease, margin-right 0.4s ease-out; /* Adiciona transição para a margem */
+}
+
+/* Estado Hover: Ícone se adapta para dar espaço ao texto */
+.wp-chat-link:hover .wp-chat-icon {
+  background-color: var(--whatsapp-green-hover);
+  /* Adiciona margem à direita para separar o ícone do texto */
+  margin-right: 8px;
+}
+
+/* Animação do Texto: Otimizado para melhor performance */
+.wp-chat-text {
+  color: var(--text-color);
+  font-size: 15px;
+  margin: 0;
+  /* margin: 0 4px 0 6px; */
+
+  max-width: 0;
+  opacity: 0;
+  white-space: nowrap;
+
+  transition: max-width 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+/* Estado Hover: Texto aparece */
+.wp-chat-link:hover .wp-chat-text {
+  max-width: 200px;
+  opacity: 1;
+
+  /* Adiciona um padding à direita no botão .wp-chat quando o texto aparece */
+  /* Isso garante que o botão se estique e não corte o texto */
+  padding-left: 25px;
+  padding-right: var(--icon-padding);
+}
+
+/* Garante que o SVG use a cor da variável */
+.wp-chat-icon svg path {
+  fill: var(--icon-color);
+}
+
+/* Focus visible for keyboard users */
+a:focus,
+button:focus {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+/* Cabecalho da tela principal */
+.hero-content {
+  /* Centraliza todo o texto (incluindo <h1> e <p>) dentro do container */
+  text-align: center;
+  /* Opcional: Garante que o container use a largura total disponível */
+  width: 100%;
+
+  /* Aninhamento válido em SCSS */
+  strong {
+    /* Torna o elemento capaz de aceitar margem vertical e ocupa toda a largura */
+    display: block;
+
+    /* Adiciona 15 pixels de espaço vertical antes do elemento */
+    margin-top: 35px;
+
+    /* Adiciona 15 pixels de espaço vertical depois do elemento */
+    margin-bottom: 35px;
+  }
+  p {
+    /* Torna o elemento capaz de aceitar margem vertical e ocupa toda a largura */
+    display: block;
+
+    /* Adiciona 15 pixels de espaço vertical depois do elemento */
+    margin-bottom: 40px;
+  }
+}
+/* </style> */
+
+/* ✨ NOVO CSS APLICADO ✨ */
+/* 1. Oculta as linhas 'brand-sub' (Assistência técnica / computadores & Servidores) */
+.brand-sub {
+  display: none;
+}
+/* 2. Garante que cada 'brand-text' (Doctor PC / Campinas) fique em sua própria linha */
+.brand-text {
+  /* Elementos 'inline' são transformados em 'block' para ocupar 100% da largura */
+  display: block;
+  font-weight: 800;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+/* Responsive */
+@media (min-width: 720px) {
+  nav.main-nav {
+    display: flex;
+  }
+  .hero-inner {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .hero {
+    padding: 4.5rem 0;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid.two {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mobile-panel {
+    display: none !important;
+  }
+  .hamburger {
+    display: none;
+  }
+
+  /* ✨ NOVO CSS INVERTIDO APLICADO ✨ */
+
+  /* 1. As linhas de subtítulo (.brand-sub) devem aparecer.
+     * -> Se você as ocultou no CSS padrão, precisa forçar a exibição aqui.
+     * -> Se elas já aparecem por padrão, este bloco é opcional/desnecessário. */
+  .brand-sub {
+    /* Retorna o elemento para seu comportamento padrão (inline) */
+    /* display: inline; */
+    display: block;
+    font-weight: 100;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* 2. As linhas de texto principal (.brand-text) devem ficar lado a lado.
+     * -> Retornamos ao comportamento padrão do span, que é 'inline'. */
+  .brand-text {
+    /* Garante que o span se comporte como um elemento de linha (lado a lado) */
+    /* display: inline; */
+    font-weight: 800;
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+
+  /* Cabecalho da tela principal */
+  .hero-content {
+    /* Centraliza todo o texto (incluindo <h1> e <p>) dentro do container */
+    text-align: center;
+    /* Opcional: Garante que o container use a largura total disponível */
+    width: 100%;
+
+    /* Aninhamento válido em SCSS */
+    strong {
+      /* Torna o elemento capaz de aceitar margem vertical e ocupa toda a largura */
+      display: block;
+
+      /* Adiciona 15 pixels de espaço vertical antes do elemento */
+      margin-top: 90px;
+
+      /* Adiciona 15 pixels de espaço vertical depois do elemento */
+      margin-bottom: 90px;
+    }
+    p {
+      /* Torna o elemento capaz de aceitar margem vertical e ocupa toda a largura */
+      display: block;
+
+      /* Adiciona 15 pixels de espaço vertical depois do elemento */
+      margin-bottom: 90px;
+    }
+  }
+}
